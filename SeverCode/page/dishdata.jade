@@ -1,0 +1,45 @@
+doctype html
+html
+	body
+		if oneDish
+			form(method="POST" action="/debug/updateDish")
+				input(type="hidden", name="oneDish[_id]", value="#{oneDish._id}")
+				.form-group
+					laber(for="inputTitle") name
+					input(type="text" name="oneDish[name]" value="#{oneDish.name}")
+				.form-group
+					laber(for="inputTitle" ) picture
+					input(type="text" name="oneDish[picture]" value="#{oneDish.picture}")
+				.form-group
+					laber(for="inputTitle" ) detail
+					input(type="text" name="oneDish[detail]" value="#{oneDish.detail}")
+				button(type="submit" style="margin:10px 0 0 135px") update
+		else
+			form(method="POST" action="/debug/addDish")
+				.form-group
+					laber(for="inputTitle") name
+					input(type="text" name="dish[name]")
+				.form-group
+					laber(for="inputTitle" ) picture
+					input(type="text" name="dish[picture]")
+				.form-group
+					laber(for="inputTitle" ) detail
+					input(type="text" name="dish[detail]")
+				button(type="submit" style="margin:10px 0 0 135px") add
+			div 
+				table
+					thead
+						tr
+							th ID
+							th name
+							th picture
+							th detail
+					tbody
+						each item in dish
+							tr
+								td #{item._id}
+								td #{item.name}
+								td #{item.picture}
+								td #{item.detail}
+								td: a(target="_blank", href="./updateDishPage?_id=#{item._id}") update
+								td: a(target="_blank", href="./deleteDish?_id=#{item._id}") delete

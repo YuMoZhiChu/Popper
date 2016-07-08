@@ -1,0 +1,100 @@
+doctype html
+html
+	body
+		if oneMenu
+			form(method="POST" action="/debug/updateMenu")
+				input(type="hidden", name="oneMenu[_id]", value="#{oneMenu._id}")
+				.form-group
+					laber(for="inputTitle")  menuName
+					input(type="text" name="oneMenu[menuName]" value="#{oneMenu.menuName}")
+				.form-group
+					laber(for="inputTitle" ) price
+					input(type="text" name="oneMenu[price]" value="#{oneMenu.price}")
+				.form-group
+					laber(for="inputTitle" ) bonus
+					input(type="text" name="oneMenu[bonus]" value="#{oneMenu.bonus}")
+				.form-group
+					laber(for="inputTitle" ) mealPoint
+					input(type="text" name="oneMenu[mealPoint]" value="#{oneMenu.mealPoint}")
+				.form-group
+					laber(for="inputTitle" ) location_x
+					input(type="text" name="oneMenu[location_x]" value="#{oneMenu.location_x}")
+				.form-group
+					laber(for="inputTitle" ) location_y
+					input(type="text" name="oneMenu[location_y]" value="#{oneMenu.location_y}")
+				.form-group
+					laber(for="inputTitle" ) summary
+					input(type="text" name="oneMenu[_summary]" value="#{oneMenu.summary}")
+				.form-group
+					laber(for="inputTitle" ) commentPointAvg
+					input(type="text" name="oneMenu[commentPointAvg]" value="#{oneMenu.commentPointAvg}")
+				button(type="submit" style="margin:10px 0 0 135px") update
+		else
+			form(method="POST" action="/debug/addMenu")
+				.form-group
+					laber(for="inputTitle") menuName
+					input(type="text" name="menu[menuName]")
+				.form-group
+					laber(for="inputTitle" ) price
+					input(type="text" name="menu[price]")
+				.form-group
+					laber(for="inputTitle" ) bonus
+					input(type="text" name="menu[bonus]")
+				.form-group
+					laber(for="inputTitle" ) mealPoint
+					input(type="text" name="menu[mealPoint]")
+				.form-group
+					laber(for="inputTitle" ) location_x
+					input(type="text" name="menu[location_x]")
+				.form-group
+					laber(for="inputTitle" ) location_y
+					input(type="text" name="menu[location_y]")
+				.form-group
+					laber(for="inputTitle" ) summary
+					input(type="text" name="menu[_summary]")
+				.form-group
+					laber(for="inputTitle" ) commentPointAvg
+					input(type="text" name="menu[commentPointAvg]")
+				button(type="submit" style="margin:10px 0 0 135px") add
+			div 
+				table
+					thead
+						tr
+							th ID
+							th menuName
+							th price
+							th bonus
+							th dishList
+							th date
+							th mealPoint
+							th location_x
+							th location_y
+							th expected
+							th _summary
+							th commentList
+							th commentPointList
+							th commentPointAvg
+							th creator
+							th participatorList
+							th update
+							th delete
+					tbody
+						each item in menu
+							tr
+								td #{item._id}
+								td #{item.menuName}
+								td #{item.price}
+								td #{item.bonus}
+								td #{item.dishList}
+								td #{item.date}
+								td #{item.mealPoint}
+								td #{item.location_x}
+								td #{item.location_y}
+								td #{item.expected}
+								td #{item._summary}
+								td #{item.commentPointList}
+								td #{item.commentPointAvg}
+								td #{item.creator}
+								td #{item.participatorList}
+								td: a(target="_blank", href="./updateMenuPage?_id=#{item._id}") update
+								td: a(target="_blank", href="./deleteMenu?_id=#{item._id}") delete
